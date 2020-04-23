@@ -16,7 +16,7 @@ node {
 	    appCenter apiToken: '6d4fa0a281c66babc047745a202a53076dc5ef01', appName: 'pocapp', distributionGroups: 'pocAndroid', notifyTesters: false, ownerName: 'pocandroid', pathToApp: 'app/build/outputs/apk/release/devops-mobility.apk', pathToDebugSymbols: '', pathToReleaseNotes: '', releaseNotes: 'devops-mobility apk stored in appCenter'
 	}
      stage('Publish app GooglePlay'){
-            androidApkUpload filesPattern: '**/build/outputs/**/*.apk', googleCredentialsId: 'Google Play Android Developer', recentChangeList: [[language: 'en-GB', text: 'Please test the apk']], trackName: 'beta'
+            androidApkUpload filesPattern: '**/build/outputs/**/*.apk', googleCredentialsId: 'Google Play Android Developer', recentChangeList: [[language: 'en-GB', text: 'Please test the apk']], trackName: 'production'
 	}
 	   emailext body: 'Build Success and APK file is generated successfully.', subject: 'Build Status', to: 'sivarajac1986@gmail.com', 'cjaiganesh@gmail.com'
     
