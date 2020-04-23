@@ -1,5 +1,8 @@
 node {
     try{
+    stage('checkout'){
+         checkout([$class: 'GitSCM', branches: [[name: '*/developer']], doGenerateSubmoduleConfigurations: false, extensions: [], submoduleCfg: [], userRemoteConfigs: [[url: 'https://github.com/pocandroid/devopsMobility.git']]])
+	    }
     stage('Build'){
         withGradle{
             sh "chmod +x gradlew"
