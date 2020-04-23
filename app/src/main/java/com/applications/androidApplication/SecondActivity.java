@@ -1,4 +1,4 @@
-package com.devops.myapplication;
+package com.applications.androidApplication;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -7,7 +7,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 
-public class FifthActivity extends AppCompatActivity {
+public class SecondActivity extends AppCompatActivity {
 
     private Button btnPrev;
     private Button btnNext;
@@ -15,7 +15,7 @@ public class FifthActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_fifth);
+        setContentView(R.layout.activity_second);
 
         btnPrev=(Button)findViewById(R.id.btnPrev);
         btnNext=(Button)findViewById(R.id.btnNext);
@@ -24,7 +24,7 @@ public class FifthActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-                Intent intent=new Intent(FifthActivity.this, SixthActivity.class);
+                Intent intent=new Intent(SecondActivity.this,ThirdActivity.class);
                 startActivity(intent);
 
             }
@@ -35,7 +35,7 @@ public class FifthActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-                Intent intent=new Intent(FifthActivity.this,FourthActivity.class);
+                Intent intent=new Intent(SecondActivity.this,MainActivity.class);
                 startActivity(intent);
 
             }

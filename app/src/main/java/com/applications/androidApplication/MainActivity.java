@@ -1,4 +1,4 @@
-package com.devops.myapplication;
+package com.applications.androidApplication;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -7,7 +7,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 
-public class FourthActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity {
 
     private Button btnPrev;
     private Button btnNext;
@@ -15,30 +15,23 @@ public class FourthActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_fourth);
+        setContentView(R.layout.activity_main);
 
         btnPrev=(Button)findViewById(R.id.btnPrev);
         btnNext=(Button)findViewById(R.id.btnNext);
+
+        btnPrev.setEnabled(false);
 
         btnNext.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
-                Intent intent=new Intent(FourthActivity.this, FifthActivity.class);
+                Intent intent=new Intent(MainActivity.this,SecondActivity.class);
                 startActivity(intent);
 
             }
         });
 
 
-        btnPrev.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-                Intent intent=new Intent(FourthActivity.this,ThirdActivity.class);
-                startActivity(intent);
-
-            }
-        });
     }
 }
