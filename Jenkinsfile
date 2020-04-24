@@ -21,7 +21,7 @@ node {
 	   emailext body: 'Build Success and APK file is generated successfully.', subject: 'Build Status', to: 'sivarajac1986@gmail.com,cjaiganesh@gmail.com'
     }catch(error){
 	 errorDescription= error.getMessage()  
-         emailext body: "${errorDescription}", subject: "Build Failure-${currentBuild.fullDisplayName}", to: 'sivarajac1986@gmail.com,cjaiganesh@gmail.com'
+         emailext body: "${errorDescription}", subject: "Build Failure-${currentBuild.fullDisplayName}", to: 'sivarajac1986@gmail.com,cjaiganesh@gmail.com,reddy.ashok4567@gmail.com'
          throw(error)	    
     }
  }
