@@ -3,7 +3,7 @@ node {
     stage('checkout'){
          checkout([$class: 'GitSCM', branches: [[name: '*/developer']], doGenerateSubmoduleConfigurations: false, extensions: [], submoduleCfg: [], userRemoteConfigs: [[url: 'https://github.com/pocandroid/devopsMobility.git']]])
 	    }
-    stage('Build'){
+    stage('Build'){ 
         withGradle{
             sh "chmod +x gradlew"
             sh "./gradlew clean assembleRelease"
@@ -18,10 +18,11 @@ node {
     stage('App Center'){
 	    appCenter apiToken: 'b748b14dd139606b4d1695855315b8789178cd2f', appName: 'dev', distributionGroups: 'pocAndroid', notifyTesters: false, ownerName: 'devopsmobility', pathToApp: 'app/build/outputs/apk/release/devops-mobility.apk', pathToDebugSymbols: '', pathToReleaseNotes: '', releaseNotes: 'devops-mobility apk stored in appCenter'
 	}	
-	   emailext body: 'Build Success and APK file is generated successfully.', subject: 'Build Status', to: 'sivarajac1986@gmail.com,cjaiganesh@gmail.com'
+	   emailext body: 'Build Success and APK file is successfully pushed Nexus and AppCenter.', subject: 'Build Status', to: 'sivarajac1986@gmail.com,cjaiganesh@gmail.com'
     }catch(error){
 	 errorDescription= error.getMessage()  
          emailext body: "${errorDescription}", subject: "Build Failure-${currentBuild.fullDisplayName}", to: 'sivarajac1986@gmail.com,cjaiganesh@gmail.com'
          throw(error)	    
     }
  }
+    
