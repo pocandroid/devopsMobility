@@ -35,7 +35,7 @@ public class MainActivity extends AppCompatActivity {
             }
         });
         
-        AppCenter.start(getApplication(), "03d2977e-0a16-4557-af34-edb684b1c488",
+        AppCenter.start(getApplication(), "695d2b58-8d48-4f26-bc1b-ecf0b5a49a40",
                   Analytics.class, Crashes.class);
 
 
