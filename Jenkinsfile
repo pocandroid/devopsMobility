@@ -18,11 +18,13 @@ node {
      stage('Publish app GooglePlay'){
             androidApkUpload filesPattern: '**/build/outputs/**/*.apk', googleCredentialsId: 'Google Play Android Developer', recentChangeList: [[language: 'en-GB', text: 'Please test the apk']], trackName: 'production'
 	}
-	   emailext body: 'Build Success and APK file is generated successfully.', subject: 'Build Status', to: 'sivarajac1986@gmail.com', 'cjaiganesh@gmail.com'
+	   emailext body: 'Build Success and APK file is published successfully in play store.', subject: "Build Success-${currentBuild.fullDisplayName}", to: 'sivarajac1986@gmail.com,cjaiganesh@gmail.com'
     
     }catch(error){
-      
-	    emailext body: "${error}", subject: "Build Failure-${currentBuild.fullDisplayName}", to: 'sivarajac1986@gmail.com' 
+	    
+         errorDescription= error.getMessage()  
+         emailext body: "${errorDescription}", subject: "Build Failure-${currentBuild.fullDisplayName}", to: 'sivarajac1986@gmail.com,cjaiganesh@gmail.com'
+         throw(error)	     
     
     }
  
