@@ -1,7 +1,7 @@
 node {
     try{
     stage('checkout'){
-         checkout([$class: 'GitSCM', branches: [[name: '*/master']], doGenerateSubmoduleConfigurations: false, extensions: [], submoduleCfg: [], userRemoteConfigs: [[url: 'https://github.com/pocandroid/devopsMobility.git']]])
+         checkout([$class: 'GitSCM', branches: [[name: '*/developer']], doGenerateSubmoduleConfigurations: false, extensions: [], submoduleCfg: [], userRemoteConfigs: [[url: 'https://github.com/pocandroid/devopsMobility.git']]])
 	    }
     stage('Build'){ 
         withGradle{
@@ -17,7 +17,7 @@ node {
 	}
     stage('App Center'){	   
 
-	    appCenter apiToken: 'b748b14dd139606b4d1695855315b8789178cd2f', appName: 'prod', distributionGroups: 'pocAndroid', notifyTesters: false, ownerName: 'devopsmobility', pathToApp: 'app/build/outputs/apk/release/*.apk', pathToDebugSymbols: '', pathToReleaseNotes: '', releaseNotes: 'devops-mobility apk stored in appCenter'
+	    appCenter apiToken: 'b748b14dd139606b4d1695855315b8789178cd2f', appName: 'dev', distributionGroups: 'pocAndroid', notifyTesters: false, ownerName: 'devopsmobility', pathToApp: 'app/build/outputs/apk/release/*.apk', pathToDebugSymbols: '', pathToReleaseNotes: '', releaseNotes: 'devops-mobility apk stored in appCenter'
 	}	
 
     stage('Publish app GooglePlay'){
