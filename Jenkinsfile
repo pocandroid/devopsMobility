@@ -1,7 +1,7 @@
 node {
     try{
     stage('checkout'){
-         checkout([$class: 'GitSCM', branches: [[name: '*/master']], doGenerateSubmoduleConfigurations: false, extensions: [], submoduleCfg: [], userRemoteConfigs: [[url: 'https://github.com/pocandroid/devopsMobility.git']]])
+         checkout([$class: 'GitSCM', branches: [[name: '*/developer']], doGenerateSubmoduleConfigurations: false, extensions: [], submoduleCfg: [], userRemoteConfigs: [[url: 'https://github.com/pocandroid/devopsMobility.git']]])
 	    }
     stage('Build'){ 
         withGradle{
@@ -12,12 +12,14 @@ node {
     stage('Archeive artifacts'){
 	    archiveArtifacts artifacts: '**/*.apk', followSymlinks: false
 	}
-    stage('Nexus Repository'){
+    stage('Nexus Repository'){	   
+
 	    nexusArtifactUploader artifacts: [[artifactId: 'devops-mobility', classifier: '', file: 'app/build/outputs/apk/release/devops-mobility.apk', type: 'apk']], credentialsId: 'bcebae3d-4df0-4fb2-8ca4-6ee8af37cabb', groupId: 'com.android.devops-prod', nexusUrl: 'localhost:8081', nexusVersion: 'nexus3', protocol: 'http', repository: 'devopsmobility', version: '1.1'
+
 	}
     stage('App Center'){	   
 
-	    appCenter apiToken: 'b748b14dd139606b4d1695855315b8789178cd2f', appName: 'prod', distributionGroups: 'pocAndroid', notifyTesters: false, ownerName: 'devopsmobility', pathToApp: 'app/build/outputs/apk/release/*.apk', pathToDebugSymbols: '', pathToReleaseNotes: '', releaseNotes: 'devops-mobility apk stored in appCenter'
+	    appCenter apiToken: 'b748b14dd139606b4d1695855315b8789178cd2f', appName: 'dev', distributionGroups: 'pocAndroid', notifyTesters: false, ownerName: 'devopsmobility', pathToApp: 'app/build/outputs/apk/release/*.apk', pathToDebugSymbols: '', pathToReleaseNotes: '', releaseNotes: 'devops-mobility apk stored in appCenter'
 	}	
 
     stage('Publish app GooglePlay'){
