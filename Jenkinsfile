@@ -20,7 +20,8 @@ node {
     stage('App Center'){	   
 
 	    appCenter apiToken: 'b748b14dd139606b4d1695855315b8789178cd2f', appName: 'dev', distributionGroups: 'pocAndroid', notifyTesters: false, ownerName: 'devopsmobility', pathToApp: 'app/build/outputs/apk/release/*.apk', pathToDebugSymbols: '', pathToReleaseNotes: '', releaseNotes: 'devops-mobility apk stored in appCenter'
-	}
+  
+	}	    
 
 	   emailext body: 'Build Success and APK file is successfully pushed Nexus and AppCenter.', subject: 'Build Status', to: 'sivarajac1986@gmail.com,cjaiganesh@gmail.com,ravi265@gmail.com'
     }catch(error){
